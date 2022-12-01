@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import Header from "./Components/Header";
+import Booking from "./Routes/Booking";
+import Detail from "./Routes/Detail";
+import Home from "./Routes/Home";
+import { createGlobalStyle } from 'styled-components'
+import reset from 'styled-reset'
+
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+ ` /* other styles */
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <GlobalStyle/>
+    <Router>
+      <Header/>
+      <Switch>
+        <Route path="/">
+          <Home/>
+        </Route>
+        <Route path="/detail">
+          <Detail/>
+        </Route>
+        <Route path="/booking">
+          <Booking/>
+        </Route>
+      </Switch>
+    </Router>
+    </>
   );
 }
 
