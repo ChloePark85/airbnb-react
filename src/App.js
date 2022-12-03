@@ -1,28 +1,37 @@
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
-import Header from "./Components/Header";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import Home from "./Routes/Home";
 import Booking from "./Routes/Booking";
 import Detail from "./Routes/Detail";
-import Home from "./Routes/Home";
 import { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
- ` /* other styles */
+  a {
+    text-decoration: none;
+    color: black;
+}
+button {
+    border: none;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+}
+ `
 
 
 function App() {
+
   return (
     <>
     <GlobalStyle/>
     <Router>
-      <Header/>
       <Switch>
         <Route path="/">
           <Home/>
         </Route>
-        <Route path="/detail">
+        <Route path="/homes" component={Detail} exact={true}>
           <Detail/>
         </Route>
         <Route path="/booking">
