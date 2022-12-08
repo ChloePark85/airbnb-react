@@ -78,7 +78,7 @@ export const CategoryItems = styled.div`
   }
 `;
 
-const CarouselStyle = styled.div`
+const StyledSlider = styled.div`
   height: 60px;
   width: 100%;
   position: relative;
@@ -94,19 +94,20 @@ const CarouselStyle = styled.div`
 
 function CategoryCarousel() {
   const settings = {
-    dosts: true,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 8,
     slidesToScroll: 1,
+    autoplay: false,
   };
 
   return (
-    <CarouselStyle>
-      <Slider {...settings}>
+    <>
+      <StyledSlider {...settings}>
         <CategoryCard />
-      </Slider>
-    </CarouselStyle>
+      </StyledSlider>
+    </>
   );
 }
 
