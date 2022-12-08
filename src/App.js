@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from "./Routes/Home";
 import Booking from "./Routes/Booking";
 import Detail from "./Routes/Detail";
@@ -18,6 +18,10 @@ button {
     color: black;
     text-decoration: none;
 }
+html, body {
+  height: 1000vh;
+}
+
  `
 
 
@@ -27,17 +31,11 @@ function App() {
     <>
     <GlobalStyle/>
     <Router>
-      <Switch>
-        <Route path="/">
-          <Home/>
-        </Route>
-        <Route path="/homes" component={Detail} exact={true}>
-          <Detail/>
-        </Route>
-        <Route path="/booking">
-          <Booking/>
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/" exact element={<Home />}/>
+        <Route path="/homes" exact element={<Detail />}/>
+        <Route path="/booking" exact element={<Booking />}/>
+      </Routes>
     </Router>
     </>
   );

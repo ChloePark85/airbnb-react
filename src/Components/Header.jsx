@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import LogoSrc from "./logo.png";
-import GlobeSrc from "./globe.png";
-import YoutubeSrc from "./youtubepreview.png";
+import LogoSrc from "./images/logo.png";
+import GlobeSrc from "./images/globe.png";
+import YoutubeSrc from "./images/youtubepreview.png";
 
 const HeaderWrapper = styled.div`
   height: 145px;
