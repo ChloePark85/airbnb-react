@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Slider, { settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CategoryCard from "./CategoryCard";
 
 export const CategoryContainer = styled.div`
   display: flex;
@@ -84,7 +85,6 @@ const StyledSlider = styled(Slider)`
   .slick-prev::before,
   .slick-next::before {
     opacity: 0;
-    display: none;
   }
   .slick-slide div {
     //슬라이더  컨텐츠
@@ -103,10 +103,7 @@ function SlickSlider({ imageUrls, name, children }) {
 
   return (
     <Slider {...settings}>
-      <button>
-        <img src={imageUrls} style={{ width: "24px", height: "24px" }} alt="" />
-      </button>
-      <span>{name}</span>
+      <CategoryCard />
     </Slider>
   );
 }

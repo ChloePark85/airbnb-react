@@ -10,6 +10,7 @@ import {
   CategoryContainer,
   CategoryItems,
 } from "../Components/Slider";
+import CategoryCard from "../Components/CategoryCard";
 // import FilterSrc from "../Components/filter.png";
 // import { FilterBtn } from "../Components/Slider";
 
@@ -34,7 +35,7 @@ function Home() {
         <CategoryBtn>
           <CategoryItems>
             {categoryItem.map((category) => (
-              <SlickSlider
+              <CategoryCard
                 key={category.id}
                 imageUrls={category.imageUrls}
                 name={category.name}
