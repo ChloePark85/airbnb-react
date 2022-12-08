@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import HomeList from "../Components/HomeList";
 import { HomeListContainer, HomeListBox } from "../Components/HomeList";
 import SlickSlider from "../Components/Slider";
-import {
+import CategoryCarousel, {
   CategoryBtn,
   CategoryContainer,
   CategoryItems,
@@ -43,6 +43,7 @@ function Home() {
             ))}
           </CategoryItems>
         </CategoryBtn>
+
         {/* <FilterBtn> */}
         {/* {
             <img

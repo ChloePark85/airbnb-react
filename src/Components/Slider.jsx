@@ -20,7 +20,7 @@ export const CategoryContainer = styled.div`
   .slick-prev:before {
     // 기존에 숨어있던 화살표 버튼이 보이게
     color: black; // 버튼 색은 검은색으로
-    left: 50;
+    left: 120;
   }
   .slick-next:before {
     opacity: 1;
@@ -59,14 +59,14 @@ export const FilterBtn = styled.button`
 
 export const CategoryItems = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 66px;
   justify-content: space-evenly;
   align-items: center;
   font-size: 12px;
-  /* height: 260px;
-  width: 100%; */
-  /* position: relative;
+
+  width: 100%;
+  position: relative;
   .slick-prev::before,
   .slick-next::before {
     opacity: 0;
@@ -75,37 +75,39 @@ export const CategoryItems = styled.div`
   .slick-slide div {
     //슬라이더  컨텐츠
     cursor: pointer;
-  } */
+  }
 `;
 
-const StyledSlider = styled(Slider)`
-  height: 260px;
+const CarouselStyle = styled.div`
+  height: 60px;
   width: 100%;
   position: relative;
-  .slick-prev::before,
+  /* .slick-prev::before,
   .slick-next::before {
     opacity: 0;
   }
   .slick-slide div {
     //슬라이더  컨텐츠
     cursor: pointer;
-  }
+  } */
 `;
 
-function SlickSlider({ imageUrls, name, children }) {
+function CategoryCarousel() {
   const settings = {
-    dots: true,
-    infinite: false,
+    dosts: true,
+    infinite: true,
     speed: 500,
     slidesToShow: 8,
     slidesToScroll: 1,
   };
 
   return (
-    <Slider {...settings}>
-      <CategoryCard />
-    </Slider>
+    <CarouselStyle>
+      <Slider {...settings}>
+        <CategoryCard />
+      </Slider>
+    </CarouselStyle>
   );
 }
 
-export default SlickSlider;
+export default CategoryCarousel;
