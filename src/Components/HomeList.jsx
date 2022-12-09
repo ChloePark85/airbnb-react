@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const HomeListContainer = styled.div`
   margin-left: 78px;
   margin-right: 78px;
-  top: 254px;
+  top: 154px;
 `;
 
 export const HomeListBox = styled.div`

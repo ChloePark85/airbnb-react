@@ -1,23 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 
-export const CategoryItems = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 66px;
-  justify-content: space-evenly;
-  align-items: center;
-  font-size: 12px;
+const CategoryCards = styled.div`
+  width: 249px;
+  cursor: pointer;
+`;
+
+const ImageContainer = styled.div`
+  height: 24px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+`;
+
+const CategoryInfo = styled.div`
+  position: relative;
+  padding: 14px 10px 0px 0px;
 `;
 
 function CategoryCard({ imageUrls, name }) {
   return (
-    <CategoryItems>
-      <button>
+    <CategoryCards>
+      <ImageContainer>
         <img src={imageUrls} style={{ width: "24px", height: "24px" }} alt="" />
-      </button>
-      <span>{name}</span>
-    </CategoryItems>
+      </ImageContainer>
+      <CategoryInfo>{name}</CategoryInfo>
+    </CategoryCards>
   );
 }
 

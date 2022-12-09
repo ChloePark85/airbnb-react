@@ -1,46 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Slider, { settings } from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import CategoryCard from "./CategoryCard";
-
-export const CategoryContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  /* height: 107px; */
-  border-bottom: #dddddd 1px solid;
-  background-color: white;
-  position: fixed;
-  overflow: scroll; //여기까지 원래 코드
-  margin: 5% auto;
-  width: 100%;
-  .slick-prev:before {
-    // 기존에 숨어있던 화살표 버튼이 보이게
-    color: black; // 버튼 색은 검은색으로
-    left: 120;
-  }
-  .slick-next:before {
-    opacity: 1;
-    color: black;
-  }
-`;
-
-export const CategoryBtn = styled.div`
-  justify-content: space-between;
-  align-items: center;
-  height: 110px;
-  margin-left: 78px;
-  display: grid;
-  grid-template-columns: repeat(60, 1fr);
-  column-gap: 48px;
-  word-break: keep-all;
-  white-space: nowrap;
-  max-width: 100%;
-  overflow: hidden;
-`;
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
 
 export const FilterBtn = styled.button`
   text-align: right;
@@ -57,58 +21,56 @@ export const FilterBtn = styled.button`
   padding: 10px;
 `;
 
-export const CategoryItems = styled.div`
+const CategoryLists = styled.div`
+  width: 1050px;
+  margin: 0px auto;
+  padding: 40px 0px;
+`;
+
+const CategoryContainer = styled.div`
+  position: relative;
+  width: 1050px;
+  margin: 0px auto;
   display: flex;
-  flex-direction: row;
-  height: 66px;
-  justify-content: space-evenly;
-  align-items: center;
-  font-size: 12px;
-
-  width: 100%;
-  position: relative;
-  .slick-prev::before,
-  .slick-next::before {
-    opacity: 0;
-    display: none;
-  }
-  .slick-slide div {
-    //슬라이더  컨텐츠
-    cursor: pointer;
-  }
 `;
 
-const StyledSlider = styled.div`
-  height: 60px;
-  width: 100%;
-  position: relative;
-  /* .slick-prev::before,
-  .slick-next::before {
-    opacity: 0;
-  }
-  .slick-slide div {
-    //슬라이더  컨텐츠
-    cursor: pointer;
-  } */
-`;
-
-function CategoryCarousel() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 8,
-    slidesToScroll: 1,
-    autoplay: false,
-  };
+function CategoryList() {
+  const [category, setCategory] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:3003/data/categories.json`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCategory(data);
+      });
+  }, []);
 
   return (
-    <>
-      <StyledSlider {...settings}>
-        <CategoryCard />
-      </StyledSlider>
-    </>
+    <CategoryLists>
+      <Swiper
+        slidesPerView={8}
+        slidesPerGroup={4}
+        spaceBetween={18}
+        navigation={true}
+        modules={[Navigation]}
+      >
+        <CategoryContainer>
+          {category.map((item) => {
+            return (
+              <SwiperSlide key={item.id}>
+                <CategoryCard
+                  key={item.id}
+                  imageUrls={item.imageUrls}
+                  name={item.name}
+                />
+              </SwiperSlide>
+            );
+          })}
+        </CategoryContainer>
+      </Swiper>
+    </CategoryLists>
   );
 }
 
-export default CategoryCarousel;
+export default CategoryList;
