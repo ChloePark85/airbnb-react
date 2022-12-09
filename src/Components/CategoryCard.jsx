@@ -2,15 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 const CategoryCards = styled.div`
-  width: 249px;
+  /* width: 249px; */
   cursor: pointer;
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.img`
   height: 24px;
+  width: 24px;
   overflow: hidden;
   position: relative;
-  width: 100%;
 `;
 
 const CategoryInfo = styled.div`
@@ -21,9 +21,7 @@ const CategoryInfo = styled.div`
 function CategoryCard({ imageUrls, name }) {
   return (
     <CategoryCards>
-      <ImageContainer>
-        <img src={imageUrls} style={{ width: "24px", height: "24px" }} alt="" />
-      </ImageContainer>
+      <ImageContainer src={imageUrls} alt="" />
       <CategoryInfo>{name}</CategoryInfo>
     </CategoryCards>
   );

@@ -1,37 +1,15 @@
 import React from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-import { useState, useEffect } from "react";
 import HomeList from "../Components/HomeList";
-import { HomeListContainer, HomeListBox } from "../Components/HomeList";
 import CategoryList from "../Components/Slider";
 
 function Home() {
-  const [homeItem, setHomeItems] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:3001/data/homes.json`)
-      .then((response) => response.json())
-      .then((json) => setHomeItems(json));
-  }, []);
-
   return (
     <>
       <Header />
       <CategoryList />
-      <HomeListContainer>
-        <HomeListBox>
-          {homeItem.map((home) => (
-            <HomeList
-              key={home.id}
-              imageUrls={home.imageUrls}
-              location={home.location}
-              registration={home.registration}
-              date={home.date}
-              price={home.price}
-            />
-          ))}
-        </HomeListBox>
-      </HomeListContainer>
+      <HomeList />
       <Footer />
     </>
   );
