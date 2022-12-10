@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Banner from "./Banner";
 import { Link } from "react-router-dom";
 import LogoSrc from "./images/logo.png";
 import { RxHamburgerMenu } from "react-icons/rx";

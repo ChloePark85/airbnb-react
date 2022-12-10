@@ -4,6 +4,7 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import HomeList from "../Components/HomeList";
 import CategoryList from "../Components/Slider";
+import Float from "../Components/Float";
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
       <Header />
       <CategoryList />
       <HomeList />
+      <Float />
       <Footer />
     </>
   );
