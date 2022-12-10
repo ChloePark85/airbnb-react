@@ -6,7 +6,7 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
-export const FilterBtn = styled.button`
+const FilterBtn = styled.button`
   text-align: right;
   width: 78px;
   height: 48px;
@@ -25,6 +25,7 @@ const CategoryLists = styled.div`
   width: 1050px;
   margin: 0px auto;
   padding: 40px 0px;
+  position: relative;
 `;
 
 const CategoryContainer = styled.div`

@@ -16,12 +16,10 @@ const HomeListBox = styled.div`
   height: 393px;
   grid-gap: 24px;
   margin-bottom: 14px;
-  margin-top: 124px;
   text-decoration: none;
-  position: relative;
 `;
 
-function HomeList({ imageUrls, location, registration, date, price }) {
+function HomeList() {
   const [homeItem, setHomeItems] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:3001/data/homes.json`)

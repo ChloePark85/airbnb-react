@@ -1,7 +1,11 @@
 import React from "react";
+import styled from "styled-components";
+import { Nav, Logo } from "../Components/Header";
 
 function Booking() {
-  return <div>Booking</div>;
+  <Nav>
+    <Logo />
+  </Nav>;
 }
 
 export default Booking;
