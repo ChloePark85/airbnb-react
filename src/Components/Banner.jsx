@@ -7,7 +7,6 @@ const BannerContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: relative;
   width: 100%;
   top: 0;
   background-color: #f7f7f7;

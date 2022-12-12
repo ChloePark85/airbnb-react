@@ -19,6 +19,7 @@ const Button = styled.button`
   justify-content: center;
   column-gap: 7px;
   bottom: 120px;
+  z-index: 5;
 `;
 
 function Float() {

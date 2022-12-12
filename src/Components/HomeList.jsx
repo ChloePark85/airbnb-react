@@ -5,9 +5,8 @@ import HomeCard from "./HomeCard";
 
 const HomeLists = styled.div`
   width: 100%;
-  margin-left: 78px;
-  margin-right: 78px;
-  /* top: 154px; */
+  margin: 25px 78px 25px 78px;
+  position: relative;
 `;
 
 const HomeListBox = styled.div`
@@ -16,35 +15,36 @@ const HomeListBox = styled.div`
   height: 393px;
   grid-gap: 24px;
   margin-bottom: 14px;
-  text-decoration: none;
 `;
 
 function HomeList() {
   const [homeItem, setHomeItems] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3001/data/homes.json`)
+    fetch(`http://localhost:3000/data/homes.json`)
       .then((response) => response.json())
       .then((json) => setHomeItems(json));
   }, []);
   return (
-    <Link to="/homes">
-      <HomeLists>
-        <HomeListBox>
-          {homeItem.map((item) => {
-            return (
-              <HomeCard
-                key={item.id}
-                imageUrls={item.imageUrls}
-                location={item.location}
-                registration={item.registration}
-                date={item.date}
-                price={item.price}
-              />
-            );
-          })}
-        </HomeListBox>
-      </HomeLists>
-    </Link>
+    <HomeLists>
+      <HomeListBox>
+        {homeItem.map((item) => {
+          return (
+            <HomeCard
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              imageUrls1={item.imageUrls1}
+              imageUrls2={item.imageUrls2}
+              location={item.location}
+              rating={item.rating}
+              registration={item.registration}
+              date={item.date}
+              price={item.price}
+            />
+          );
+        })}
+      </HomeListBox>
+    </HomeLists>
   );
 }
 

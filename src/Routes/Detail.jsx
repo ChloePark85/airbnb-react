@@ -1,13 +1,19 @@
 import React from "react";
+import { useParams, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { FiShare } from "react-icons/fi";
 import { AiOutlineHeart, AiFillStar } from "react-icons/ai";
 import { IoPersonOutline, IoCalendarClearOutline } from "react-icons/io5";
 import { VscKey } from "react-icons/vsc";
+import Footer from "../Components/Footer";
 
 const Base = styled.div`
   margin: 0px 170px 0px 170px;
+  position: absolute;
+  top: 100px;
 `;
 
 const HomeTitleContainer = styled.div`
@@ -103,7 +109,7 @@ const PriceBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 28px 25px;
-  row-gap: 25px;
+  /* row-gap: 25px; */
   box-sizing: border-box;
 `;
 
@@ -113,6 +119,12 @@ const PriceTable = styled.div`
   height: 115px;
   border-collapse: separate;
   border-radius: 10px;
+  padding: 12px 19px 12px 19px;
+  box-sizing: border-box;
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
 `;
 
 const Button = styled.button`
@@ -121,20 +133,25 @@ const Button = styled.button`
   border-radius: 10px;
   color: white;
   padding: 18px 0;
+  cursor: pointer;
 `;
 
 function Detail() {
+  const { id } = useParams();
+  const { state } = useLocation();
+  console.log(id);
+  console.log(state);
+
   return (
     <>
       <Header />
       <Base>
         <HomeTitleContainer>
-          <Title>Hidden Haven - 5 Bed Villa with pool & Sea Views</Title>
+          <Title>{state.title}</Title>
           <TitleDetail>
             <span>
               <AiFillStar />
-              5.0 · 후기 5개 ·󰀃 슈퍼호스트 · 케이프타운, 웨스턴케이프 주,
-              남아프리카
+              {state.rating} · 후기 5개 · 슈퍼호스트 · {state.location}
             </span>
             <span>
               <FiShare />
@@ -144,31 +161,20 @@ function Detail() {
           </TitleDetail>
         </HomeTitleContainer>
         <HomeImages>
-          <HomeLeft
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-717134404264905813/original/dfe9fd1e-a010-43c9-b546-0bbc7d59f7f3.jpeg?im_w=720"
-            alt=""
-          />
+          <HomeLeft src={state.imageUrls1} alt="" />
           <HomeRight>
             <HomeRightRow style={{ marginBottom: "8px" }}>
+              <img src={state.imageUrls2} style={{ width: "270px" }} alt="" />
               <img
-                src="https://a0.muscache.com/im/pictures/miso/Hosting-717134404264905813/original/0e074fc5-2d13-422d-bc5a-af14595f2f38.jpeg?im_w=720"
-                style={{ width: "270px" }}
-                alt=""
-              />
-              <img
-                src="https://a0.muscache.com/im/pictures/miso/Hosting-717134404264905813/original/5a06ec14-3591-459f-86ec-dfe5be7c203c.jpeg?im_w=720"
+                src={state.imageUrls1}
                 style={{ width: "270px", borderTopRightRadius: "10px" }}
                 alt=""
               />
             </HomeRightRow>
             <HomeRightRow>
+              <img src={state.imageUrls2} style={{ width: "270px" }} alt="" />
               <img
-                src="https://a0.muscache.com/im/pictures/miso/Hosting-717134404264905813/original/0e074fc5-2d13-422d-bc5a-af14595f2f38.jpeg?im_w=720"
-                style={{ width: "270px" }}
-                alt=""
-              />
-              <img
-                src="https://a0.muscache.com/im/pictures/miso/Hosting-717134404264905813/original/5a06ec14-3591-459f-86ec-dfe5be7c203c.jpeg?im_w=720"
+                src={state.imageUrls1}
                 style={{ width: "270px", borderBottomRightRadius: "10px" }}
                 alt=""
               />
@@ -273,13 +279,17 @@ function Detail() {
               </div>
             </HomeInfoLeftRow>
             <HomeInfoLeftRow>
-              <img src="" alt="" />
+              <img
+                src="https://a0.muscache.com/im/pictures/51a7f002-b223-4e05-a2af-0d4838411d92.jpg"
+                style={{ width: "102px", height: "29px" }}
+                alt=""
+              />
               <span>
                 모든 예약에는 호스트가 예약을 취소하거나 숙소 정보가 정확하지
                 않은 경우 또는 체크인에 문제가 있는 상황에 대비한 무료 보호
                 프로그램이 포함됩니다.
               </span>
-              <span>더 알아보기</span>
+              <span style={{ textDecoration: "underline" }}>더 알아보기</span>
             </HomeInfoLeftRow>
           </HomeInfoLeft>
           <HomeInfoRight>
@@ -291,8 +301,16 @@ function Detail() {
                   justifyContent: "space-between",
                 }}
               >
-                <span>₩806,151 / 박</span>
-                <span>5.0 후기 5개</span>
+                <div>
+                  <span style={{ fontSize: "20px", fontWeight: "600" }}>
+                    {state.price}
+                  </span>
+                  <span>&nbsp; /박</span>
+                </div>
+                <div>
+                  <AiFillStar />
+                  <span>{state.rating} 후기 5개</span>
+                </div>
               </div>
               <PriceTable>
                 <table>
@@ -347,23 +365,29 @@ function Detail() {
                   </tr>
                 </table>
               </PriceTable>
-              <Button>예약하기</Button>
-              <span>예약 확정 전에는 요금이 청구되지 않습니다.</span>
+              <Link to="/booking">
+                <Button>예약하기</Button>
+              </Link>
+              <span style={{ textAlign: "center" }}>
+                예약 확정 전에는 요금이 청구되지 않습니다.
+              </span>
               <div
                 style={{
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  textDecoration: "underline",
                 }}
               >
-                <span>₩806,151 x 5박</span>
-                <span>₩4,030,755</span>
+                <span>{state.price} x 5박</span>
+                <span>parseInt({state.price * 5})</span>
               </div>
               <div
                 style={{
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  textDecoration: "underline",
                 }}
               >
                 <span>청소비</span>
@@ -374,12 +398,14 @@ function Detail() {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  textDecoration: "underline",
+                  paddingBottom: "15px",
+                  borderBottom: "#dddddd 1px solid",
                 }}
               >
                 <span>서비스 수수료</span>
                 <span>₩572,302</span>
               </div>
-              <hr style={{ border: "#dddddd 1px solid" }} />
               <div
                 style={{
                   display: "flex",
@@ -394,6 +420,7 @@ function Detail() {
           </HomeInfoRight>
         </HomeInfo>
       </Base>
+      <Footer />
     </>
   );
 }

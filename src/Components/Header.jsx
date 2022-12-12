@@ -6,6 +6,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { BiGlobe } from "react-icons/bi";
+import { useState } from "react";
 
 const HeaderWrapper = styled.div``;
 
@@ -14,12 +15,14 @@ export const Nav = styled.nav`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: relative;
   width: 100%;
   background-color: white;
   height: 81px;
   font-size: 14px;
   border-bottom: #dddddd 1px solid;
+  position: fixed;
+  z-index: 3;
+  top: 0;
 `;
 const Search = styled.div`
   width: 333px;
@@ -42,6 +45,7 @@ const SearchIcon = styled.div`
   border-radius: 50%;
   padding: 10px;
   background-color: #ff385c;
+  cursor: pointer;
 `;
 
 export const Logo = styled.img`
@@ -55,7 +59,7 @@ const Items = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center; ;
+  align-items: center;
 `;
 
 const Login = styled.div`
@@ -64,16 +68,30 @@ const Login = styled.div`
   width: 70px;
   height: 40px;
   border-radius: 21px;
-  transition: box-shadow 0.2s ease;
   box-sizing: border-box;
   padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+`;
+
+const Button = styled.button`
+  cursor: pointer;
 `;
 
 function Header() {
+  const [isToggleOn1, setToggleOn1] = useState(false);
+  const handleBackgroundColor1 = () => {
+    setToggleOn1((current) => !current);
+  };
+  const [isToggleOn2, setToggleOn2] = useState(false);
+  const handleBackgroundColor2 = () => {
+    setToggleOn2((current) => !current);
+  };
   return (
     <HeaderWrapper>
       <Nav>
@@ -81,28 +99,58 @@ function Header() {
           <Logo src={LogoSrc} />
         </Link>
         <Search>
-          <button style={{ fontWeight: "500" }}>어디든지</button>
+          <Button style={{ fontWeight: "500" }}>어디든지</Button>
           <div
             style={{
               borderLeft: "1px solid #dddddd",
               height: "24px",
             }}
           />
-          <button style={{ fontWeight: "500" }}>언제든 일주일</button>
+          <Button style={{ fontWeight: "500" }}>언제든 일주일</Button>
           <div
             style={{
               borderLeft: "1px solid #dddddd",
               height: "24px",
             }}
           />
-          <button style={{ fontWeight: "300" }}>게스트 추가</button>
+          <Button style={{ fontWeight: "300" }}>게스트 추가</Button>
           <SearchIcon>
             <HiMagnifyingGlass style={{ color: "white" }} />
           </SearchIcon>
         </Search>
         <Items>
-          <span>당신의 공간을 에어비앤비하세요</span>
-          <BiGlobe style={{ height: "16px", width: "16px", padding: "20px" }} />
+          <div
+            onMouseOver={handleBackgroundColor1}
+            style={{
+              width: "206px",
+              height: "39px",
+              borderRadius: "24px",
+              backgroundColor: isToggleOn1 ? "#dddddd" : "white",
+              padding: "13px 7px",
+              boxSizing: "border-box",
+              textAlign: "center",
+            }}
+          >
+            <span>당신의 공간을 에어비앤비하세요</span>
+          </div>
+          <div
+            onMouseOver={handleBackgroundColor2}
+            style={{
+              width: "44px",
+              height: "39px",
+              borderRadius: "24px",
+              backgroundColor: isToggleOn2 ? "#dddddd" : "white",
+              padding: "13px 13px",
+              boxSizing: "border-box",
+            }}
+          >
+            <BiGlobe
+              style={{
+                height: "16px",
+                width: "16px",
+              }}
+            />
+          </div>
           <Login>
             <RxHamburgerMenu />
             <CgProfile style={{ width: "24px", height: "24px" }} />
