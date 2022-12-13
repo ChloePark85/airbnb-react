@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, FreeMode, Mousewheel } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
+
 import { TbAdjustmentsHorizontal } from "react-icons/tb";
 // import {
 //   IoChevronBackCircleOutline,

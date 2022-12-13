@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
 
 const CategoryCards = styled.div`
   cursor: pointer;
@@ -27,11 +28,20 @@ const CategoryInfo = styled.div`
 `;
 
 function CategoryCard({ imageUrls, name }) {
+  const [category, setCategory] = useState("default");
+  const handleClick = () => {
+    setCategory("categorySwitch");
+  };
   return (
-    <CategoryCards>
-      <ImageContainer src={imageUrls} alt="" />
-      <CategoryInfo style={{ marginBottom: "15px" }}>{name}</CategoryInfo>
-    </CategoryCards>
+    <>
+      {category === "default" && (
+        <CategoryCards onClick={handleClick}>
+          <ImageContainer src={imageUrls} alt="" />
+          <CategoryInfo style={{ marginBottom: "15px" }}>{name}</CategoryInfo>
+        </CategoryCards>
+      )}
+      {/* {category ==="categorySwitch" && } */}
+    </>
   );
 }
 

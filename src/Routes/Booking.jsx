@@ -5,6 +5,7 @@ import LogoSrc from "../Components/images/logo.png";
 import Footer from "../Components/Footer";
 import { IoIosArrowBack } from "react-icons/io";
 import { useParams, useLocation } from "react-router-dom";
+import { AiFillStar } from "react-icons/ai";
 
 const Title = styled.div`
   display: flex;
@@ -68,6 +69,7 @@ const BaseRightRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `;
 
 function Booking() {
@@ -144,7 +146,44 @@ function Booking() {
           </BaseLeftInfo>
         </BaseLeft>
         <BaseRight>
-          <BaseRightRow></BaseRightRow>
+          <BaseRightRow>
+            <img
+              style={{ borderRadius: "10px", width: "126px", height: "106px" }}
+              src="https://a0.muscache.com/im/pictures/miso/Hosting-717134404264905813/original/dfe9fd1e-a010-43c9-b546-0bbc7d59f7f3.jpeg?im_w=720"
+              alt=""
+            />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                height: "106px",
+              }}
+            >
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <span>저택 전체</span>
+                <span>Hidden Haven - 5 Bed Villa with pool & Sea Views</span>
+              </div>
+              <div>
+                <AiFillStar /> 5.00(후기 5개) &nbsp; 슈퍼호스트)
+              </div>
+            </div>
+          </BaseRightRow>
+          <BaseRightRow>
+            <img
+              style={{ width: "49px", height: "16px" }}
+              src="https://a0.muscache.com/im/pictures/51a7f002-b223-4e05-a2af-0d4838411d92.jp"
+              alt=""
+            />
+            를 통한 예약 보호
+          </BaseRightRow>
+          <span style={{ fontSize: "20px", fontWeight: "600" }}>
+            요금 세부정보
+          </span>
+          <BaseRightRow>
+            <div>₩784,781 x 6박</div>
+            <div>₩4,708,686</div>
+          </BaseRightRow>
         </BaseRight>
       </Base>
       <Footer />
