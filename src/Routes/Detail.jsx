@@ -9,6 +9,7 @@ import { AiOutlineHeart, AiFillStar } from "react-icons/ai";
 import { IoPersonOutline, IoCalendarClearOutline } from "react-icons/io5";
 import { VscKey } from "react-icons/vsc";
 import Footer from "../Components/Footer";
+import StickyBox from "react-sticky-box";
 
 const Base = styled.div`
   margin: 0px 170px 0px 170px;
@@ -291,132 +292,178 @@ function Detail() {
               </span>
               <span style={{ textDecoration: "underline" }}>더 알아보기</span>
             </HomeInfoLeftRow>
+            <HomeInfoLeftRow>
+              <p>일부 정보는 원어로 표시됩니다. 번역</p>
+              <p>
+                Relax with the whole family at this peaceful 5 Bedroom Villa
+                overlooking Hout Bay Beach
+              </p>
+              <p>** LOADSHEDDING BACK UP FROM DEC ONWARDS *</p>
+              <p>5 BEDROOMS – 3 BATHROOMS</p>
+              <p>...</p>
+              <div style={{ textDecoration: "underline", fontWeight: "600" }}>
+                더 보기
+              </div>
+            </HomeInfoLeftRow>
+            <HomeInfoLeftRow>
+              <div style={{ fontSize: "20px", fontWeight: "500" }}>
+                숙소 편의시설
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  columnGap: "",
+                }}
+              >
+                <ul className="leftRow">
+                  <li>만 전망</li>
+                  <li>주방</li>
+                </ul>
+                <ul className="RightRow">
+                  <li>만 전망</li>
+                  <li>주방</li>
+                </ul>
+              </div>
+            </HomeInfoLeftRow>
+            <HomeInfoLeftRow>
+              <div style={{ fontSize: "20px", fontWeight: "500" }}>
+                {state.location}에서 6박
+              </div>
+              <div style={{ color: "grey", fontSize: "10px" }}>
+                2023년 4월 3일 - 2023년 4월 9일
+              </div>
+            </HomeInfoLeftRow>
           </HomeInfoLeft>
+
           <HomeInfoRight>
-            <PriceBox>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>
-                  <span style={{ fontSize: "20px", fontWeight: "600" }}>
-                    {state.price}
-                  </span>
-                  <span>&nbsp; /박</span>
+            <StickyBox offsetTop={100}>
+              <PriceBox>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div>
+                    <span style={{ fontSize: "20px", fontWeight: "600" }}>
+                      {state.price}
+                    </span>
+                    <span>&nbsp; /박</span>
+                  </div>
+                  <div>
+                    <AiFillStar />
+                    <span>{state.rating} 후기 5개</span>
+                  </div>
                 </div>
-                <div>
-                  <AiFillStar />
-                  <span>{state.rating} 후기 5개</span>
+                <PriceTable>
+                  <table>
+                    <tr>
+                      <td>
+                        <span
+                          style={{
+                            fontSize: "12px",
+                            fontWeight: "600",
+                            marginBottom: "5px",
+                          }}
+                        >
+                          체크인
+                        </span>
+                        <br />
+                        <span style={{ fontSize: "14px", fontWeight: "300" }}>
+                          2023.4.3.
+                        </span>
+                      </td>
+                      <td>
+                        <span
+                          style={{
+                            fontSize: "12px",
+                            fontWeight: "600",
+                            marginBottom: "5px",
+                          }}
+                        >
+                          체크아웃
+                        </span>
+                        <br />
+                        <span style={{ fontSize: "14px", fontWeight: "300" }}>
+                          2023.4.8.
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <span
+                          style={{
+                            fontSize: "12px",
+                            fontWeight: "600",
+                            marginBottom: "5px",
+                          }}
+                        >
+                          인원
+                        </span>
+                        <br />
+                        <span style={{ fontSize: "14px", fontWeight: "300" }}>
+                          게스트 1명
+                        </span>
+                      </td>
+                    </tr>
+                  </table>
+                </PriceTable>
+                <Link to="/booking">
+                  <Button>예약하기</Button>
+                </Link>
+                <span style={{ textAlign: "center" }}>
+                  예약 확정 전에는 요금이 청구되지 않습니다.
+                </span>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    textDecoration: "underline",
+                  }}
+                >
+                  <span>{state.price} x 5박</span>
+                  <span>parseInt({state.price * 5})</span>
                 </div>
-              </div>
-              <PriceTable>
-                <table>
-                  <tr>
-                    <td>
-                      <span
-                        style={{
-                          fontSize: "12px",
-                          fontWeight: "600",
-                          marginBottom: "5px",
-                        }}
-                      >
-                        체크인
-                      </span>
-                      <br />
-                      <span style={{ fontSize: "14px", fontWeight: "300" }}>
-                        2023.4.3.
-                      </span>
-                    </td>
-                    <td>
-                      <span
-                        style={{
-                          fontSize: "12px",
-                          fontWeight: "600",
-                          marginBottom: "5px",
-                        }}
-                      >
-                        체크아웃
-                      </span>
-                      <br />
-                      <span style={{ fontSize: "14px", fontWeight: "300" }}>
-                        2023.4.8.
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-                      <span
-                        style={{
-                          fontSize: "12px",
-                          fontWeight: "600",
-                          marginBottom: "5px",
-                        }}
-                      >
-                        인원
-                      </span>
-                      <br />
-                      <span style={{ fontSize: "14px", fontWeight: "300" }}>
-                        게스트 1명
-                      </span>
-                    </td>
-                  </tr>
-                </table>
-              </PriceTable>
-              <Link to="/booking">
-                <Button>예약하기</Button>
-              </Link>
-              <span style={{ textAlign: "center" }}>
-                예약 확정 전에는 요금이 청구되지 않습니다.
-              </span>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  textDecoration: "underline",
-                }}
-              >
-                <span>{state.price} x 5박</span>
-                <span>parseInt({state.price * 5})</span>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  textDecoration: "underline",
-                }}
-              >
-                <span>청소비</span>
-                <span>₩23,033</span>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  textDecoration: "underline",
-                  paddingBottom: "15px",
-                  borderBottom: "#dddddd 1px solid",
-                }}
-              >
-                <span>서비스 수수료</span>
-                <span>₩572,302</span>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <span>총 합계</span>
-                <span>₩4,704,977</span>
-              </div>
-            </PriceBox>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    textDecoration: "underline",
+                  }}
+                >
+                  <span>청소비</span>
+                  <span>₩23,033</span>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    textDecoration: "underline",
+                    paddingBottom: "15px",
+                    borderBottom: "#dddddd 1px solid",
+                  }}
+                >
+                  <span>서비스 수수료</span>
+                  <span>₩572,302</span>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span>총 합계</span>
+                  <span>₩4,704,977</span>
+                </div>
+              </PriceBox>
+            </StickyBox>
           </HomeInfoRight>
         </HomeInfo>
       </Base>

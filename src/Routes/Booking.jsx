@@ -46,12 +46,12 @@ const BaseLeftBox = styled.div`
 
 const BaseLeftInfo = styled.div`
   display: flex;
-  height: 180px;
+
   flex-direction: column;
   justify-content: space-between;
   border-bottom: #dddddd 1px solid;
-  margin: 20px 0px 36px 0px;
-  padding: 35px 0px;
+  margin: 20px 0px 0px 0px;
+  padding: 20px 0px;
 `;
 
 const BaseRight = styled.div`
@@ -63,6 +63,7 @@ const BaseRight = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-sizing: border-box;
 `;
 
 const BaseRightRow = styled.div`
@@ -95,9 +96,9 @@ function Booking() {
               <span>흔치 않은 기회입니다.</span>
               <span>Jenny님의 숙소는 보통 예약이 가득 차 있습니다.</span>
             </div>
-            <img src="" alt="" />
+            <img src="src/Components/images/gem.png" alt="" />
           </BaseLeftBox>
-          <BaseLeftInfo>
+          <BaseLeftInfo style={{ rowGap: "30px" }}>
             <span style={{ fontSize: "22px", fontWeight: "600" }}>
               예약정보
             </span>
@@ -141,14 +142,138 @@ function Booking() {
             </div>
           </BaseLeftInfo>
           <BaseLeftInfo>
-            <span>결제방식 선택하기</span>
-            <div>table</div>
+            <span
+              style={{
+                fontSize: "22px",
+                fontWeight: "600",
+                marginBottom: "30px",
+              }}
+            >
+              결제방식 선택하기
+            </span>
+            <div
+              style={{
+                border: "black 1px solid",
+                width: "560px",
+                height: "75px",
+                borderTopLeftRadius: "10px",
+                borderTopRightRadius: "10px",
+                padding: "18px 15px",
+                boxSizing: "border-box",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontWeight: "600", marginBottom: "10px" }}>
+                    전액 결제
+                  </span>
+
+                  <span>총액을 결제하시면 모든 절차가 완료됩니다.</span>
+                </div>
+                <div>
+                  <span style={{ fontWeight: "600" }}>₩5,399,032</span>
+                  <button>버튼</button>
+                </div>
+              </div>
+            </div>
+            <div
+              style={{
+                border: "#dddddd 1px solid",
+                width: "560px",
+                height: "120px",
+                borderBottomLeftRadius: "10px",
+                borderBottomRightRadius: "10px",
+                padding: "18px 15px",
+                rowGap: "10px",
+                boxSizing: "border-box",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div style={{}}>
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <div style={{ fontWeight: "600", marginBottom: "10px" }}>
+                      요금 일부는 지금 결제, 나머지는 나중에 결제
+                    </div>
+                    <div>
+                      <span style={{ fontWeight: "600" }}>₩2,699,516</span>
+                      <button> 버튼</button>
+                    </div>
+                  </div>
+                  <div style={{ marginBottom: "10px" }}>
+                    지금 ₩2,699,516을 결제하시면, 나머지 금액은 동일한
+                    결제수단으로 2023년 2월 24일 자동 청구됩니다. 추가 수수료는
+                    없습니다.
+                  </div>
+                  <div
+                    style={{ fontWeight: "600", textDecoration: "underline" }}
+                  >
+                    상세 정보
+                  </div>
+                </div>
+              </div>
+            </div>
+          </BaseLeftInfo>
+          <BaseLeftInfo>
+            <span
+              style={{
+                fontSize: "22px",
+                fontWeight: "600",
+                marginBottom: "30px",
+              }}
+            >
+              예약하려면 로그인 또는 회원 가입하세요
+            </span>
+            <div
+              style={{
+                border: "#dddddd 1px solid",
+                borderRadius: "10px",
+                height: "115px",
+                width: "562px",
+              }}
+            ></div>
+            <span style={{ margin: "9px 0px 18px 0px", fontSize: "6px" }}>
+              전화나 문자로 전화번호를 확인하겠습니다. 일반 문자 메시지 요금 및
+              데이터 요금이 부과됩니다. 개인정보 처리방침
+            </span>
+            <button
+              style={{
+                width: "562px",
+                height: "48px",
+                backgroundColor: "#ff385c",
+                color: "white",
+                borderRadius: "10px",
+              }}
+            >
+              계속
+            </button>
           </BaseLeftInfo>
         </BaseLeft>
         <BaseRight>
-          <BaseRightRow>
+          <BaseRightRow
+            style={{ borderBottom: "#dddddd 1px solid", paddingBottom: "26px" }}
+          >
             <img
-              style={{ borderRadius: "10px", width: "126px", height: "106px" }}
+              style={{
+                marginRight: "13px",
+                borderRadius: "10px",
+                width: "126px",
+                height: "106px",
+              }}
               src="https://a0.muscache.com/im/pictures/miso/Hosting-717134404264905813/original/dfe9fd1e-a010-43c9-b546-0bbc7d59f7f3.jpeg?im_w=720"
               alt=""
             />
@@ -165,24 +290,40 @@ function Booking() {
                 <span>Hidden Haven - 5 Bed Villa with pool & Sea Views</span>
               </div>
               <div>
-                <AiFillStar /> 5.00(후기 5개) &nbsp; 슈퍼호스트)
+                <AiFillStar /> 5.00(후기 5개) &nbsp; 슈퍼호스트
               </div>
             </div>
           </BaseRightRow>
-          <BaseRightRow>
+          <div
+            style={{ padding: "20px 0px", borderBottom: "#dddddd 1px solid" }}
+          >
             <img
-              style={{ width: "49px", height: "16px" }}
-              src="https://a0.muscache.com/im/pictures/51a7f002-b223-4e05-a2af-0d4838411d92.jp"
+              style={{ width: "52px", height: "16px" }}
+              src="https://a0.muscache.com/im/pictures/51a7f002-b223-4e05-a2af-0d4838411d92.jpg"
               alt=""
             />
             를 통한 예약 보호
-          </BaseRightRow>
+          </div>
           <span style={{ fontSize: "20px", fontWeight: "600" }}>
             요금 세부정보
           </span>
           <BaseRightRow>
             <div>₩784,781 x 6박</div>
             <div>₩4,708,686</div>
+          </BaseRightRow>
+          <BaseRightRow>
+            <div>청소비</div>
+            <div>₩22,422</div>
+          </BaseRightRow>
+          <BaseRightRow
+            style={{ borderBottom: "#dddddd 1px solid", paddingBottom: "15px" }}
+          >
+            <div>서비스 수수료</div>
+            <div>₩667,924</div>
+          </BaseRightRow>
+          <BaseRightRow>
+            <div>총합계 (KRW)</div>
+            <div>₩5,399,032</div>
           </BaseRightRow>
         </BaseRight>
       </Base>

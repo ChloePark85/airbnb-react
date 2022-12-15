@@ -92,6 +92,11 @@ function Header() {
   const handleBackgroundColor2 = () => {
     setToggleOn2((current) => !current);
   };
+  const [modal, setModal] = useState(false);
+  const [isSearchWhere, setSearchWhere] = useState();
+  const handleSearchWhere = () => {
+    setSearchWhere("showSearchWhere");
+  };
   return (
     <HeaderWrapper>
       <Nav>
@@ -99,7 +104,9 @@ function Header() {
           <Logo src={LogoSrc} />
         </Link>
         <Search>
-          <Button style={{ fontWeight: "500" }}>어디든지</Button>
+          <Button style={{ fontWeight: "500" }} onClick={handleSearchWhere}>
+            어디든지
+          </Button>
           <div
             style={{
               borderLeft: "1px solid #dddddd",
@@ -153,7 +160,13 @@ function Header() {
           </div>
           <Login>
             <RxHamburgerMenu />
-            <CgProfile style={{ width: "24px", height: "24px" }} />
+            <CgProfile
+              style={{ width: "24px", height: "24px" }}
+              onClick={() => {
+                setModal(!modal);
+              }}
+            />
+            {/* {modal === true ? <ModalStyle /> : null} */}
           </Login>
         </Items>
       </Nav>
