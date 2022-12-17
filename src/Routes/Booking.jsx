@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Nav, Logo } from "../Components/Header";
-import LogoSrc from "../Components/images/logo.png";
+import { Nav, LogoShape, LogoText } from "../Components/Header";
+import LogoshapeSrc from "../Components/images/logoshape.png";
+import LogotextSrc from "../Components/images/logotext.png";
 import Footer from "../Components/Footer";
 import { IoIosArrowBack } from "react-icons/io";
 import { useParams, useLocation } from "react-router-dom";
@@ -77,7 +78,16 @@ function Booking() {
   return (
     <>
       <Nav>
-        <Logo src={LogoSrc} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <LogoShape src={LogoshapeSrc} />
+          <LogoText src={LogotextSrc} />
+        </div>
       </Nav>
       <Title>
         <IoIosArrowBack />

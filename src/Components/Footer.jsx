@@ -9,6 +9,9 @@ const Foot = styled.div`
   left: 0;
   border-top: #dddddd 1px solid;
   background-color: white;
+  @media screen and (max-width: 744px) {
+    display: none;
+  }
 `;
 
 const Items = styled.div`
@@ -16,6 +19,9 @@ const Items = styled.div`
   flex-direction: column;
   margin-right: 78px;
   margin-left: 78px;
+  @media screen and (max-width: 744px) {
+    display: none;
+  }
 `;
 
 const Item1 = styled.div`
@@ -26,11 +32,31 @@ const Item1 = styled.div`
   border-bottom: #dddddd 1px solid;
   font-size: 14px;
   padding: 15px;
+  @media screen and (max-width: 744px) {
+    display: none;
+  }
 `;
 const Item2 = styled.div`
   font-size: 9px;
   font-weight: 100;
   padding: 10px;
+  @media screen and (max-width: 744px) {
+    display: none;
+  }
+`;
+
+const MobileFoot = styled.div`
+  height: 63px;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: #dddddd 1px solid;
+  background-color: white;
+  @media screen and (min-width: 744px) {
+    display: block;
+  }
 `;
 
 function Footer() {
@@ -56,6 +82,7 @@ function Footer() {
           호스트에게 있습니다.
         </Item2>
       </Items>
+      {/* <MobileFoot /> */}
     </Foot>
   );
 }

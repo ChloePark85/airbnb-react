@@ -14,8 +14,8 @@ import { TbAdjustmentsHorizontal } from "react-icons/tb";
 
 const CategoryLists = styled.div`
   box-sizing: border-box;
-  margin: 20px 78px 0px 78px;
-  padding: 20px 0px 18px 0px;
+  margin: 0px 78px 0px 78px;
+  padding: 0px 0px 18px 0px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

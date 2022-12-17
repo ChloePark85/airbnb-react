@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { BsMap } from "react-icons/bs";
 
@@ -23,8 +24,18 @@ const Button = styled.button`
 `;
 
 function Float() {
+  const [map, setMap] = useState(false);
+  const handleShowMap = () => {
+    setMap(true);
+  };
+
   return (
-    <Button>
+    <Button
+      onClick={() => {
+        handleShowMap();
+      }}
+    >
+      {/* {map && <} */}
       <span>지도 표시하기</span>
       <BsMap style={{ width: "17px", height: "17px" }} />
     </Button>

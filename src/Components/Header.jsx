@@ -1,28 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import LogoSrc from "./images/logo.png";
+import LogoshapeSrc from "./images/logoshape.png";
+import LogotextSrc from "./images/logotext.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { BiGlobe } from "react-icons/bi";
 import { useState } from "react";
+import SearchForm from "./forms/SearchForm";
 
-const HeaderWrapper = styled.div``;
+const HeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 33px;
+`;
 
 export const Nav = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   background-color: white;
-  height: 81px;
+  padding-top: 30px;
+  margin-bottom: 15px;
   font-size: 14px;
   border-bottom: #dddddd 1px solid;
   position: fixed;
   z-index: 3;
-  top: 0;
+  top: 0px;
+  padding-bottom: 17px;
 `;
 const Search = styled.div`
   width: 333px;
@@ -37,6 +45,7 @@ const Search = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 16px 8px 16px 16px;
   box-sizing: border-box;
+  margin-bottom: 15px;
 `;
 
 const SearchIcon = styled.div`
@@ -48,11 +57,19 @@ const SearchIcon = styled.div`
   cursor: pointer;
 `;
 
-export const Logo = styled.img`
+export const LogoShape = styled.img`
   margin-left: 78px;
-  width: 107px;
-  height: 36px;
-  padding: 24px;
+  width: 34px;
+  height: 34px;
+  margin-right: 5px;
+`;
+
+export const LogoText = styled.img`
+  width: 68px;
+  height: 18px;
+  @media screen and (max-width: 1147px) {
+    display: none;
+  }
 `;
 const Items = styled.div`
   margin-right: 78px;
@@ -93,38 +110,89 @@ function Header() {
     setToggleOn2((current) => !current);
   };
   const [modal, setModal] = useState(false);
-  const [isSearchWhere, setSearchWhere] = useState();
-  const handleSearchWhere = () => {
-    setSearchWhere("showSearchWhere");
+
+  const [searchForm, setSearchForm] = useState("default");
+  const [isSearchBarOn, setSearchBarOn] = useState(false);
+
+  const handleSearchBarOn = () => {
+    setSearchBarOn(true);
   };
+
+  const handleSearchWhereClick = () => {
+    setSearchForm("showSearchWhere");
+  };
+  const handleSearchWhenClick = () => {
+    setSearchForm("showSearchWhen");
+  };
+  const handleSearchGuestClick = () => {
+    setSearchForm("showSearchGuest");
+  };
+  console.log({ searchForm });
   return (
     <HeaderWrapper>
-      <Nav>
+      <Nav
+        style={{
+          height: isSearchBarOn ? "158px" : "80px",
+          boxSizing: "border-box",
+        }}
+      >
         <Link to="/">
-          <Logo src={LogoSrc} />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              width: "104px",
+            }}
+          >
+            <LogoShape src={LogoshapeSrc} />
+            <LogoText src={LogotextSrc} />
+          </div>
         </Link>
-        <Search>
-          <Button style={{ fontWeight: "500" }} onClick={handleSearchWhere}>
-            어디든지
-          </Button>
-          <div
-            style={{
-              borderLeft: "1px solid #dddddd",
-              height: "24px",
-            }}
-          />
-          <Button style={{ fontWeight: "500" }}>언제든 일주일</Button>
-          <div
-            style={{
-              borderLeft: "1px solid #dddddd",
-              height: "24px",
-            }}
-          />
-          <Button style={{ fontWeight: "300" }}>게스트 추가</Button>
-          <SearchIcon>
-            <HiMagnifyingGlass style={{ color: "white" }} />
-          </SearchIcon>
-        </Search>
+
+        {/* 클릭에 따라 검색 폼 달라지는 부분 */}
+        {searchForm === "default" && (
+          <Search onClick={handleSearchBarOn}>
+            <Button
+              style={{ fontWeight: "500", whiteSpace: "nowrap" }}
+              onClick={handleSearchWhereClick}
+            >
+              어디든지
+            </Button>
+            <div
+              style={{
+                borderLeft: "1px solid #dddddd",
+                height: "24px",
+              }}
+            />
+            <Button
+              style={{ fontWeight: "500", whiteSpace: "nowrap" }}
+              onClick={handleSearchWhenClick}
+            >
+              언제든 일주일
+            </Button>
+            <div
+              style={{
+                borderLeft: "1px solid #dddddd",
+                height: "24px",
+              }}
+            />
+            <Button
+              style={{ fontWeight: "300", whiteSpace: "nowrap" }}
+              onClick={handleSearchGuestClick}
+            >
+              게스트 추가
+            </Button>
+            <SearchIcon>
+              <HiMagnifyingGlass style={{ color: "white" }} />
+            </SearchIcon>
+          </Search>
+        )}
+        {/* 언제든지 클릭한 경우 */}
+        {searchForm === "showSearchWhere" && <SearchForm />}
+        {searchForm === "showSearchWhen" && <SearchForm />}
+        {searchForm === "showSearchGuest" && <SearchForm />}
+
         <Items>
           <div
             onMouseOver={handleBackgroundColor1}
