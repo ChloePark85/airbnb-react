@@ -9,6 +9,7 @@ import { HiMagnifyingGlass } from "react-icons/hi2";
 import { BiGlobe } from "react-icons/bi";
 import { useState } from "react";
 import SearchForm from "./forms/SearchForm";
+import LoginModal from "./modals/LoginModal";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -79,7 +80,7 @@ const Items = styled.div`
   align-items: center;
 `;
 
-const Login = styled.div`
+const Login = styled.button`
   margin: 5px;
   border: 1px solid #dddddd;
   width: 70px;
@@ -109,7 +110,10 @@ function Header() {
   const handleBackgroundColor2 = () => {
     setToggleOn2((current) => !current);
   };
-  const [modal, setModal] = useState(false);
+  const [isOpen, setOpen] = useState(false);
+  const handleLoginClick = () => {
+    setOpen((current) => !current);
+  };
 
   const [searchForm, setSearchForm] = useState("default");
   const [isSearchBarOn, setSearchBarOn] = useState(false);
@@ -226,15 +230,10 @@ function Header() {
               }}
             />
           </div>
-          <Login>
+          <Login onClick={handleLoginClick}>
             <RxHamburgerMenu />
-            <CgProfile
-              style={{ width: "24px", height: "24px" }}
-              onClick={() => {
-                setModal(!modal);
-              }}
-            />
-            {/* {modal === true ? <ModalStyle /> : null} */}
+            <CgProfile style={{ width: "24px", height: "24px" }} />
+            <LoginModal isOpen={isOpen} />
           </Login>
         </Items>
       </Nav>

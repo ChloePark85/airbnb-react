@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, FreeMode, Mousewheel } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
+import FilterModal from "./modals/FilterModal";
 
 import { TbAdjustmentsHorizontal } from "react-icons/tb";
 // import {
@@ -19,6 +20,7 @@ const CategoryLists = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  z-index: 5;
 `;
 
 const CategoryContainer = styled.div`
@@ -75,6 +77,10 @@ function CategoryList() {
         setCategory(data);
       });
   }, []);
+  const [isOpen, setOpen] = useState(false);
+  const handleFilterClick = () => {
+    setOpen((current) => !current);
+  };
 
   return (
     <CategoryLists>
@@ -101,9 +107,10 @@ function CategoryList() {
           })}
         </CategoryContainer>
       </StyledSwiper>
-      <FilterBtn>
+      <FilterBtn onClick={handleFilterClick}>
         <TbAdjustmentsHorizontal />
         <span>필터</span>
+        <FilterModal isOpen={isOpen} />
       </FilterBtn>
     </CategoryLists>
   );
