@@ -1,5 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
+import AreaModal from "../modals/AreaModal";
+import GuestModal from "../modals/GuestModal";
+import CheckinModal from "../modals/CheckinModal";
+import CheckoutModal from "../modals/CheckoutModal";
 
 const SearchFormContainer = styled.div`
   display: flex;
@@ -28,7 +33,6 @@ const SearchBar = styled.div`
   border-radius: 50px;
   border: #dddddd 1px solid;
   margin-left: 200px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -37,7 +41,15 @@ const SearchBar = styled.div`
   align-items: center;
 `;
 
-const Button = styled.button``;
+const TourInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+`;
 const SearchButton = styled.button`
   width: 87px;
   height: 47px;
@@ -47,6 +59,37 @@ const SearchButton = styled.button`
 `;
 
 function SearchForm() {
+  const [value, setValue] = useState("default");
+  const [isOpen, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const onChangeSearch = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  };
+
+  const handleDestinationClick = () => {
+    setValue("destination");
+    setOpen(true);
+  };
+
+  const handleCheckinClick = () => {
+    setValue("checkin");
+    setOpen(true);
+  };
+  const handleCheckoutClick = () => {
+    setValue("checkout");
+    setOpen(true);
+  };
+
+  const handleGuestClick = () => {
+    setValue("guest");
+    setOpen(true);
+  };
+
+  const handleDefaultClick = () => {
+    setValue("default");
+  };
+
   return (
     <SearchFormContainer>
       <SearchFormCategory>
@@ -55,13 +98,129 @@ function SearchForm() {
         <div>온라인 체험</div>
       </SearchFormCategory>
 
-      <SearchBar>
-        <Button>여행지</Button>
-        <Button>체크인</Button>
-        <Button>체크아웃</Button>
-        <Button>여행자</Button>
-        <SearchButton>검색</SearchButton>
-      </SearchBar>
+      {value === "default" && (
+        <SearchBar style={{ backgroundColor: "#ebebeb" }}>
+          <TourInfo onClick={handleDestinationClick}>
+            <div>여행지</div>
+            <input
+              type="text"
+              value={search}
+              placeholder="여행지 검색"
+              onChange={onChangeSearch}
+            ></input>
+          </TourInfo>
+          <TourInfo onClick={handleCheckinClick}>
+            <div>체크인</div>
+            <div style={{ fontWeight: "300" }}>날짜 입력</div>
+          </TourInfo>
+          <TourInfo onClick={handleCheckoutClick}>
+            <div>체크아웃</div>
+            <div style={{ fontWeight: "300" }}>날짜 입력</div>
+          </TourInfo>
+          <TourInfo onClick={handleGuestClick}>
+            <div>여행자</div>
+            <div style={{ fontWeight: "300" }}>게스트 추가</div>
+          </TourInfo>
+          <SearchButton type="submit">검색</SearchButton>
+        </SearchBar>
+      )}
+      {value === "destination" && (
+        <>
+          <SearchBar style={{ backgroundColor: "#ebebeb" }}>
+            <TourInfo onClick={handleDestinationClick}>
+              <div>여행지</div>
+              <input placeholder="여행지 검색"></input>
+            </TourInfo>
+            <TourInfo onClick={handleCheckinClick}>
+              <div>체크인</div>
+              <div style={{ fontWeight: "300" }}>날짜 입력</div>
+            </TourInfo>
+            <TourInfo onClick={handleCheckoutClick}>
+              <div>체크아웃</div>
+              <div style={{ fontWeight: "300" }}>날짜 입력</div>
+            </TourInfo>
+            <TourInfo onClick={handleGuestClick}>
+              <div>여행자</div>
+              <div style={{ fontWeight: "300" }}>게스트 추가</div>
+            </TourInfo>
+            <SearchButton>검색</SearchButton>
+          </SearchBar>
+          <AreaModal isOpen={isOpen} />
+        </>
+      )}
+      {value === "checkin" && (
+        <>
+          <SearchBar style={{ backgroundColor: "#ebebeb" }}>
+            <TourInfo onClick={handleDestinationClick}>
+              <div>여행지</div>
+              <input placeholder="여행지 검색"></input>
+            </TourInfo>
+            <TourInfo onClick={handleCheckinClick}>
+              <div>체크인</div>
+              <div style={{ fontWeight: "300" }}>날짜 입력</div>
+            </TourInfo>
+            <TourInfo onClick={handleCheckoutClick}>
+              <div>체크아웃</div>
+              <div style={{ fontWeight: "300" }}>날짜 입력</div>
+            </TourInfo>
+            <TourInfo onClick={handleGuestClick}>
+              <div>여행자</div>
+              <div style={{ fontWeight: "300" }}>게스트 추가</div>
+            </TourInfo>
+            <SearchButton>검색</SearchButton>
+          </SearchBar>
+          <CheckinModal isOpen={isOpen} />
+        </>
+      )}
+      {value === "checkout" && (
+        <>
+          <SearchBar style={{ backgroundColor: "#ebebeb" }}>
+            <TourInfo onClick={handleDestinationClick}>
+              <div>여행지</div>
+              <input placeholder="여행지 검색"></input>
+            </TourInfo>
+            <TourInfo onClick={handleCheckinClick}>
+              <div>체크인</div>
+              <div style={{ fontWeight: "300" }}>날짜 입력</div>
+            </TourInfo>
+            <TourInfo onClick={handleCheckoutClick}>
+              <div>체크아웃</div>
+              <div style={{ fontWeight: "300" }}>날짜 입력</div>
+            </TourInfo>
+            <TourInfo onClick={handleGuestClick}>
+              <div>여행자</div>
+              <div style={{ fontWeight: "300" }}>게스트 추가</div>
+            </TourInfo>
+            <SearchButton>검색</SearchButton>
+          </SearchBar>
+          <CheckoutModal isOpen={isOpen} />
+        </>
+      )}
+
+      {value === "guest" && (
+        <>
+          <SearchBar style={{ backgroundColor: "#ebebeb" }}>
+            <TourInfo onClick={handleDestinationClick}>
+              <div>여행지</div>
+              <input placeholder="여행지 검색"></input>
+            </TourInfo>
+            <TourInfo onClick={handleCheckinClick}>
+              <div>체크인</div>
+              <div style={{ fontWeight: "300" }}>날짜 입력</div>
+            </TourInfo>
+            <TourInfo onClick={handleCheckoutClick}>
+              <div>체크아웃</div>
+              <div style={{ fontWeight: "300" }}>날짜 입력</div>
+            </TourInfo>
+            <TourInfo onClick={handleGuestClick}>
+              <div>여행자</div>
+              <div style={{ fontWeight: "300" }}>게스트 추가</div>
+            </TourInfo>
+            <SearchButton>검색</SearchButton>
+          </SearchBar>
+          <GuestModal isOpen={isOpen} />
+        </>
+      )}
     </SearchFormContainer>
   );
 }

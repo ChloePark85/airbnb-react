@@ -20,7 +20,8 @@ const CategoryLists = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  z-index: 5;
+  z-index: 0;
+  position: relative;
 `;
 
 const CategoryContainer = styled.div`
@@ -30,6 +31,7 @@ const CategoryContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 0;
 `;
 
 const StyledSwiper = styled(Swiper)`
@@ -38,6 +40,7 @@ const StyledSwiper = styled(Swiper)`
     background-size: 50% auto;
     background-position: center;
     color: #222222;
+    z-index: 0;
   }
 
   .swiper-button-prev {
