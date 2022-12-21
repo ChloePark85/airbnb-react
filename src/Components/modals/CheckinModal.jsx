@@ -33,10 +33,14 @@ const StyledCalendar = styled(Calendar)`
 
 function CheckinModal({ isOpen }) {
   const [value, onChange] = useState(new Date());
+  const checkinDate = moment(value).format("YYYY년 MM월 DD일");
+  console.log(value);
+  console.log(checkinDate);
 
   return (
     <Modal
       isOpen={isOpen}
+      checkinDate={checkinDate}
       style={{
         overlay: {
           position: "fixed",
@@ -71,6 +75,7 @@ function CheckinModal({ isOpen }) {
           onChange={onChange}
           formatDay={(locale, date) => moment(date).format("DD")}
           value={value}
+          checkinDate={moment(value).format("YYYY년 MM월 DD일")}
           selectRange={true}
           nextLabel={<MdNavigateNext />}
           prevLabel={<GrFormPrevious />}
@@ -78,6 +83,9 @@ function CheckinModal({ isOpen }) {
           prev2Label={null}
           showNeighboringMonth={false}
         />
+        <div className="text-gray-500 mt-4">
+          {moment(value).format("YYYY년 MM월 DD일")}
+        </div>
         <StyledCalendar
           onChange={onChange}
           formatDay={(locale, date) => moment(date).format("DD")}

@@ -193,9 +193,9 @@ function Header() {
           </Search>
         )}
         {/* 언제든지 클릭한 경우 */}
-        {searchForm === "showSearchWhere" && <SearchForm />}
-        {searchForm === "showSearchWhen" && <SearchForm />}
-        {searchForm === "showSearchGuest" && <SearchForm />}
+        {searchForm === "showSearchWhere" && <SearchForm value="destination" />}
+        {searchForm === "showSearchWhen" && <SearchForm value="checkin" />}
+        {searchForm === "showSearchGuest" && <SearchForm value="guest" />}
 
         <Items>
           <div

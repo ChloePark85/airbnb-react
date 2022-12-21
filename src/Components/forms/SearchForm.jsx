@@ -5,6 +5,8 @@ import AreaModal from "../modals/AreaModal";
 import GuestModal from "../modals/GuestModal";
 import CheckinModal from "../modals/CheckinModal";
 import CheckoutModal from "../modals/CheckoutModal";
+import { checkinState } from "../../recoil/CheckinDate";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
 const SearchFormContainer = styled.div`
   display: flex;
@@ -58,10 +60,11 @@ const SearchButton = styled.button`
   color: white;
 `;
 
-function SearchForm() {
+function SearchForm({ checkinDate }) {
   const [value, setValue] = useState("default");
   const [isOpen, setOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const chekinDay = useRecoilValue(checkinState);
   const onChangeSearch = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
