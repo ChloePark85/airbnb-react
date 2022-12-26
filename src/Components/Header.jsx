@@ -154,48 +154,48 @@ function Header() {
           </div>
         </Link>
 
-        {/* 클릭에 따라 검색 폼 달라지는 부분 */}
-        {searchForm === "default" && (
-          <Search onClick={handleSearchBarOn}>
-            <Button
-              style={{ fontWeight: "500", whiteSpace: "nowrap" }}
-              onClick={handleSearchWhereClick}
-            >
-              어디든지
-            </Button>
-            <div
-              style={{
-                borderLeft: "1px solid #dddddd",
-                height: "24px",
-              }}
-            />
-            <Button
-              style={{ fontWeight: "500", whiteSpace: "nowrap" }}
-              onClick={handleSearchWhenClick}
-            >
-              언제든 일주일
-            </Button>
-            <div
-              style={{
-                borderLeft: "1px solid #dddddd",
-                height: "24px",
-              }}
-            />
-            <Button
-              style={{ fontWeight: "300", whiteSpace: "nowrap" }}
-              onClick={handleSearchGuestClick}
-            >
-              게스트 추가
-            </Button>
-            <SearchIcon>
-              <HiMagnifyingGlass style={{ color: "white" }} />
-            </SearchIcon>
-          </Search>
-        )}
-        {/* 언제든지 클릭한 경우 */}
+        {/* 클릭에 따라 검색 폼 달라지는 부분
+        {searchForm === "default" && ( */}
+        <Search onClick={handleSearchBarOn}>
+          <Button
+            style={{ fontWeight: "500", whiteSpace: "nowrap" }}
+            onClick={handleSearchWhereClick}
+          >
+            어디든지
+          </Button>
+          <div
+            style={{
+              borderLeft: "1px solid #dddddd",
+              height: "24px",
+            }}
+          />
+          <Button
+            style={{ fontWeight: "500", whiteSpace: "nowrap" }}
+            onClick={handleSearchWhenClick}
+          >
+            언제든 일주일
+          </Button>
+          <div
+            style={{
+              borderLeft: "1px solid #dddddd",
+              height: "24px",
+            }}
+          />
+          <Button
+            style={{ fontWeight: "300", whiteSpace: "nowrap" }}
+            onClick={handleSearchGuestClick}
+          >
+            게스트 추가
+          </Button>
+          <SearchIcon>
+            <HiMagnifyingGlass style={{ color: "white" }} />
+          </SearchIcon>
+        </Search>
+        {/* )} */}
+        {/* 언제든지 클릭한 경우
         {searchForm === "showSearchWhere" && <SearchForm value="destination" />}
         {searchForm === "showSearchWhen" && <SearchForm value="checkin" />}
-        {searchForm === "showSearchGuest" && <SearchForm value="guest" />}
+        {searchForm === "showSearchGuest" && <SearchForm value="guest" />} */}
 
         <Items>
           <div

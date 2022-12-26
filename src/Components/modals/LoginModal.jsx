@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal/lib/components/Modal";
+import LoginpopModal from "./LoginpopModal";
 
 function LoginModal({ isOpen }) {
+  const [showPopup, setShowpopup] = useState(false);
+  const handleLoginTextClick = () => {
+    setShowpopup((current) => !current);
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -36,7 +42,10 @@ function LoginModal({ isOpen }) {
         },
       }}
     >
-      <div>로그인</div>
+      <button onClick={handleLoginTextClick}>
+        <span>로그인</span>
+        <LoginpopModal isOpen={showPopup} showPopup={showPopup} />
+      </button>
       <div>회원가입</div>
       <div>당신의 공간을 에어비앤비하세요</div>
       <div style={{ border: "#dddddd 1px solid" }}></div>
