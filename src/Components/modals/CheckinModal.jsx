@@ -15,7 +15,6 @@ const StyledCalendar = styled(Calendar)`
     color: #222;
     border-radius: 8px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.125em;
   }
   .react-calendar__tile--now {

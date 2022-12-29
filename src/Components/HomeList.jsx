@@ -5,14 +5,12 @@ import HomeCard from "./HomeCard";
 
 const HomeLists = styled.div`
   width: 100%;
-  margin: 25px 78px 25px 78px;
-  position: relative;
+  margin: 25px 78px;
 `;
 
 const HomeListBox = styled.div`
   display: grid;
   grid-template-columns: 306px 306px 306px 306px;
-  height: 393px;
   grid-gap: 24px;
   margin-bottom: 14px;
 `;
@@ -24,6 +22,7 @@ function HomeList() {
       .then((response) => response.json())
       .then((json) => setHomeItems(json));
   }, []);
+
   return (
     <HomeLists>
       <HomeListBox>

@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import Banner from "../Components/Banner";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
@@ -9,14 +8,15 @@ import Float from "../Components/Float";
 
 function Home() {
   return (
-    <>
+    <div>
       <Banner />
       <Header />
-      <CategoryList />
-      <HomeList />
-      <Float />
+      <div style={{ marginTop: "165px", marginBottom: "191px" }}>
+        <HomeList />
+        <Float />
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

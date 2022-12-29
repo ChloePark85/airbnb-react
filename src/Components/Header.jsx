@@ -10,18 +10,14 @@ import { BiGlobe } from "react-icons/bi";
 import { useState } from "react";
 import SearchForm from "./forms/SearchForm";
 import LoginModal from "./modals/LoginModal";
+import CategoryList from "../Components/Slider";
 
 const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 33px;
 `;
 
 export const Nav = styled.nav`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
   width: 100%;
   background-color: white;
   padding-top: 30px;
@@ -30,11 +26,26 @@ export const Nav = styled.nav`
   border-bottom: #dddddd 1px solid;
   position: fixed;
   z-index: 3;
-  top: 0px;
-  padding-bottom: 17px;
+  top: 0;
+
+  padding: 0 40px;
+
+  .bar {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .detail {
+    margin-bottom: 12px;
+  }
 `;
+
 const Search = styled.div`
-  width: 333px;
+  flex: 1;
+
   height: 47px;
   border: 1px solid #dddddd;
   border-radius: 25px;
@@ -46,7 +57,6 @@ const Search = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 16px 8px 16px 16px;
   box-sizing: border-box;
-  margin-bottom: 15px;
 `;
 
 const SearchIcon = styled.div`
@@ -59,10 +69,8 @@ const SearchIcon = styled.div`
 `;
 
 export const LogoShape = styled.img`
-  margin-left: 78px;
   width: 34px;
   height: 34px;
-  margin-right: 5px;
 `;
 
 export const LogoText = styled.img`
@@ -72,11 +80,12 @@ export const LogoText = styled.img`
     display: none;
   }
 `;
+
 const Items = styled.div`
-  margin-right: 78px;
   display: flex;
+  flex: 1;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 `;
 
@@ -131,114 +140,131 @@ function Header() {
   const handleSearchGuestClick = () => {
     setSearchForm("showSearchGuest");
   };
-  console.log({ searchForm });
+
   return (
     <HeaderWrapper>
-      <Nav
-        style={{
-          height: isSearchBarOn ? "158px" : "80px",
-          boxSizing: "border-box",
-        }}
-      >
-        <Link to="/">
+      <Nav>
+        <div className="bar">
           <div
             style={{
+              flex: 1,
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
               width: "104px",
             }}
           >
-            <LogoShape src={LogoshapeSrc} />
-            <LogoText src={LogotextSrc} />
+            <Link to="/">
+              <LogoShape src={LogoshapeSrc} />
+              <LogoText src={LogotextSrc} />
+            </Link>
           </div>
-        </Link>
-
-        {/* 클릭에 따라 검색 폼 달라지는 부분
-        {searchForm === "default" && ( */}
-        <Search onClick={handleSearchBarOn}>
-          <Button
-            style={{ fontWeight: "500", whiteSpace: "nowrap" }}
-            onClick={handleSearchWhereClick}
-          >
-            어디든지
-          </Button>
-          <div
-            style={{
-              borderLeft: "1px solid #dddddd",
-              height: "24px",
-            }}
-          />
-          <Button
-            style={{ fontWeight: "500", whiteSpace: "nowrap" }}
-            onClick={handleSearchWhenClick}
-          >
-            언제든 일주일
-          </Button>
-          <div
-            style={{
-              borderLeft: "1px solid #dddddd",
-              height: "24px",
-            }}
-          />
-          <Button
-            style={{ fontWeight: "300", whiteSpace: "nowrap" }}
-            onClick={handleSearchGuestClick}
-          >
-            게스트 추가
-          </Button>
-          <SearchIcon>
-            <HiMagnifyingGlass style={{ color: "white" }} />
-          </SearchIcon>
-        </Search>
-        {/* )} */}
-        {/* 언제든지 클릭한 경우
-        {searchForm === "showSearchWhere" && <SearchForm value="destination" />}
-        {searchForm === "showSearchWhen" && <SearchForm value="checkin" />}
-        {searchForm === "showSearchGuest" && <SearchForm value="guest" />} */}
-
-        <Items>
-          <div
-            onMouseOver={handleBackgroundColor1}
-            style={{
-              width: "206px",
-              height: "39px",
-              borderRadius: "24px",
-              backgroundColor: isToggleOn1 ? "#dddddd" : "white",
-              padding: "13px 7px",
-              boxSizing: "border-box",
-              textAlign: "center",
-            }}
-          >
-            <span>당신의 공간을 에어비앤비하세요</span>
-          </div>
-          <div
-            onMouseOver={handleBackgroundColor2}
-            style={{
-              width: "44px",
-              height: "39px",
-              borderRadius: "24px",
-              backgroundColor: isToggleOn2 ? "#dddddd" : "white",
-              padding: "13px 13px",
-              boxSizing: "border-box",
-            }}
-          >
-            <BiGlobe
+          {searchForm !== "showSearchWhere" && (
+            <Search onClick={handleSearchBarOn}>
+              <Button
+                style={{ fontWeight: "500", whiteSpace: "nowrap" }}
+                onClick={handleSearchWhereClick}
+              >
+                어디든지
+              </Button>
+              <div
+                style={{
+                  borderLeft: "1px solid #dddddd",
+                  height: "24px",
+                }}
+              />
+              <Button
+                style={{ fontWeight: "500", whiteSpace: "nowrap" }}
+                onClick={handleSearchWhenClick}
+              >
+                언제든 일주일
+              </Button>
+              <div
+                style={{
+                  borderLeft: "1px solid #dddddd",
+                  height: "24px",
+                }}
+              />
+              <Button
+                style={{ fontWeight: "300", whiteSpace: "nowrap" }}
+                onClick={handleSearchGuestClick}
+              >
+                게스트 추가
+              </Button>
+              <SearchIcon>
+                <HiMagnifyingGlass style={{ color: "white" }} />
+              </SearchIcon>
+            </Search>
+          )}
+          {searchForm === "showSearchWhere" && (
+            <SearchFormCategory>
+              <div>숙소</div>
+              <div>체험</div>
+              <div>온라인 체험</div>
+            </SearchFormCategory>
+          )}
+          <Items>
+            <div
+              onMouseOver={handleBackgroundColor1}
               style={{
-                height: "16px",
-                width: "16px",
+                width: "206px",
+                height: "39px",
+                borderRadius: "24px",
+                backgroundColor: isToggleOn1 ? "#dddddd" : "white",
+                padding: "13px 7px",
+                boxSizing: "border-box",
+                textAlign: "center",
               }}
-            />
+            >
+              <span>당신의 공간을 에어비앤비하세요</span>
+            </div>
+            <div
+              onMouseOver={handleBackgroundColor2}
+              style={{
+                width: "44px",
+                height: "39px",
+                borderRadius: "24px",
+                backgroundColor: isToggleOn2 ? "#dddddd" : "white",
+                padding: "13px 13px",
+                boxSizing: "border-box",
+              }}
+            >
+              <BiGlobe
+                style={{
+                  height: "16px",
+                  width: "16px",
+                }}
+              />
+            </div>
+            <Login onClick={handleLoginClick}>
+              <RxHamburgerMenu />
+              <CgProfile style={{ width: "24px", height: "24px" }} />
+              <LoginModal isOpen={isOpen} />
+            </Login>
+          </Items>
+        </div>
+        {searchForm === "showSearchWhere" && (
+          <div className="detail">
+            <SearchForm value="destination" />
           </div>
-          <Login onClick={handleLoginClick}>
-            <RxHamburgerMenu />
-            <CgProfile style={{ width: "24px", height: "24px" }} />
-            <LoginModal isOpen={isOpen} />
-          </Login>
-        </Items>
+        )}
+        <CategoryList />
       </Nav>
     </HeaderWrapper>
   );
 }
 
 export default Header;
+
+const SearchFormCategory = styled.div`
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 195px;
+  margin-bottom: 9px;
+  column-gap: 32px;
+  font-size: 18px;
+  white-space: nowrap;
+`;

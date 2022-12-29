@@ -36,6 +36,7 @@ const Item1 = styled.div`
     display: none;
   }
 `;
+
 const Item2 = styled.div`
   font-size: 9px;
   font-weight: 100;

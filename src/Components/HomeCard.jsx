@@ -29,7 +29,6 @@ const HomeImage = styled.img`
 
 const HomeInfo = styled.div`
   margin-top: 14px;
-  position: relative;
 `;
 
 const StyledSlider = styled(Slider)`

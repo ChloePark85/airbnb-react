@@ -61,10 +61,11 @@ const SearchButton = styled.button`
 `;
 
 function SearchForm({ checkinDate }) {
-  const [value, setValue] = useState("default");
-  const [isOpen, setOpen] = useState(false);
+  const [value, setValue] = useState("destination");
+  const [isOpen, setOpen] = useState(true);
   const [search, setSearch] = useState("");
   const chekinDay = useRecoilValue(checkinState);
+
   const onChangeSearch = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
@@ -95,12 +96,6 @@ function SearchForm({ checkinDate }) {
 
   return (
     <SearchFormContainer>
-      <SearchFormCategory>
-        <div>숙소</div>
-        <div>체험</div>
-        <div>온라인 체험</div>
-      </SearchFormCategory>
-
       {value === "default" && (
         <SearchBar style={{ backgroundColor: "#ebebeb" }}>
           <TourInfo onClick={handleDestinationClick}>
